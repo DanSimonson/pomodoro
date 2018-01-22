@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--google fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <!--my style css-->
+    <link rel="stylesheet" type="text/css" href="css/indexStyle.css">
+
+    <title>Pomodoro Clock!</title>
+  </head>
+  <body>
+        <div class="container"> 
+                <p id="main-heading" class="animated rubberBand">Pomodoro Clock</p>
+            
+              <div class="outer">
+                <div class="middle">
+                  <div class="inner">
+                    <!--<img class="animated bounceInDown clock-image" src="http://www.cliparthut.com/clip-arts/168/tomato-clip-art-168823.png" alt="Logo"/>-->
+                    <img class="animated bounceInDown clock-image" src="img/pomodoro.png" alt="Logo"/>
+                    <p class="clock-text">Session</p>
+                    <span class="clock-time">25:00</span>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="row button-container">
+                <div class="col col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                   <span class="button-heading">Break Length</span>
+                   <p><button class="break-min"><i class="fa fa-minus"></i></button><span class="time break-time">5</span><button class="break-plus"><i class="fa fa-plus"></i></button></p>
+                </div>
+                <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <button class="ctrl btn btn-lg" id='start-btn'>Start</button>
+                </div>
+                <div class="col col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                   <span class="button-heading">Session Length</span>
+                   <p><button class="session-min"><i class="fa fa-minus"></i></button><span class="time session-time">25</span><button class="session-plus"><i class="fa fa-plus"></i></button></p>   
+                 </div>
+              </div>
+            </div> <!--End Container-->
+              
+        
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+      <script src="scripts/indexScript.js"></script>
+  </body>
+  </html>
