@@ -6,13 +6,14 @@ $(document).ready(function () {
     const displayTime = document.getElementById('show-timer');
     //global counter variable
     let counter;
+    let stopCountDown = false;
     
 
 
     function getClick(e) {
         if (e.target !== e.currentTarget) {
             //event target always goes to root element so we are going back to parent button as well as getting the target
-            // += doesn't work in this cas and we use parseInt on the element to get it to increment by one
+            // += doesn't work in this case and we use parseInt on the element to get it to increment by one
             let btnClicked = e.target;
             let btnParent = e.target.parentNode;
             let btnId = e.target.id;
@@ -35,13 +36,16 @@ $(document).ready(function () {
 
             if(e.target.id === 'start-btn') {
                 //get time for countdown and convert the minutes to seconds and pass to timer function
-                var sessionTimer = document.getElementById("show-timer").innerHTML;
-                var holdTime = sessionTimer.split(":");
-                var minSeconds = holdTime[0] * 60;
+                let sessionTimer = document.getElementById("show-timer").innerHTML;
+                let holdTime = sessionTimer.split(":");
+                let minSeconds = holdTime[0] * 60;
                 timer(minSeconds);
+                //sessionTimer = document.getElementById("break-length").innerHTML + ":00";
+                //holdTime = sessionTimer.split(":");
+                //minSeconds = holdTime[0] * 60;
+                //timer(minSeconds);    
                 
-            }
-             
+            }             
         }
     }
 
@@ -53,13 +57,24 @@ $(document).ready(function () {
         counter = setInterval(() => {
             const secondsLeft = Math.round((then - Date.now()) / 1000);
             //console.log(secondsLeft);
-            // check if we should stop it!
-            if(secondsLeft <= 0) {
-              clearInterval(counter);
-              //return;
-            }
             // show count down
             showCount(secondsLeft);
+            // check if we should stop it!
+            if(secondsLeft === 0 && stopCountDown === false) {
+              clearInterval(counter);
+              document.getElementById("clock-header").innerHTML = "BREAK TIME";
+              let breakTimer = document.getElementById("break-length").innerHTML + ":00";
+              let breakTime = breakTimer.split(":");
+              let breakSeconds = breakTime[0] * 60;
+              timer(breakSeconds);
+              stopCountDown = true;    
+              //return;
+            }else if (secondsLeft === 0 && stopCountDown === true){
+                clearInterval(counter);
+                document.getElementById("clock-header").innerHTML = "SESSION";
+                document.getElementById('show-timer').innerHTML = "25:00";
+            }
+            
           }, 1000);
     } 
     
