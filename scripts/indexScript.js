@@ -55,7 +55,10 @@ $(document).ready(function () {
                 let minSeconds = holdTime[0] * 60;
                 $( "#reset-btn" ).removeClass("hidden");
                 $('.hide-awesome').css('display', 'inline-block');
-                timer(minSeconds);                
+                if($("reset-btn").hasClass('hidden')) {
+                    timer(minSeconds);
+                };
+                                
             }
         }
     }
