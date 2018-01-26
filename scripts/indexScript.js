@@ -1,14 +1,29 @@
 $(document).ready(function () {
+
+    var audio = new Audio('img/welldone.wav');
+    
     //use event propigation to get the clicked item
     let theParent = document.querySelector(".button-container");
     theParent.addEventListener("click", getClick, false);
+    //get reset event
+    let reset = document.getElementById('reset-btn').addEventListener("click", resetListener, false);
+    //let reset = document.getElementById('ear');
+    //ear.addEventListener("click", listener, false)
     // display time variable
     const displayTime = document.getElementById('show-timer');
     //global counter variable
     let counter;
     let stopCountDown = false;
     
-
+    function resetListener() {
+        console.log('reset listener');
+        clearInterval(counter);
+        document.getElementById("clock-header").innerHTML = "SESSION";
+        document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
+        $("#start-btn").text("Start");
+        $( "#reset-btn" ).addClass("hidden");
+        $('.hide-awesome').css('display', 'none');
+    }
 
     function getClick(e) {
         if (e.target !== e.currentTarget) {
@@ -35,17 +50,13 @@ $(document).ready(function () {
             }
 
             if(e.target.id === 'start-btn') {
-                //get time for countdown and convert the minutes to seconds and pass to timer function
                 let sessionTimer = document.getElementById("show-timer").innerHTML;
                 let holdTime = sessionTimer.split(":");
                 let minSeconds = holdTime[0] * 60;
-                timer(minSeconds);
-                //sessionTimer = document.getElementById("break-length").innerHTML + ":00";
-                //holdTime = sessionTimer.split(":");
-                //minSeconds = holdTime[0] * 60;
-                //timer(minSeconds);    
-                
-            }             
+                $( "#reset-btn" ).removeClass("hidden");
+                $('.hide-awesome').css('display', 'inline-block');
+                timer(minSeconds);                
+            }
         }
     }
 
@@ -67,12 +78,14 @@ $(document).ready(function () {
               let breakTime = breakTimer.split(":");
               let breakSeconds = breakTime[0] * 60;
               timer(breakSeconds);
-              stopCountDown = true;    
-              //return;
+              stopCountDown = true;
+              audio.play();
             }else if (secondsLeft === 0 && stopCountDown === true){
                 clearInterval(counter);
                 document.getElementById("clock-header").innerHTML = "SESSION";
-                document.getElementById('show-timer').innerHTML = "25:00";
+                document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
+                $('.hide-awesome').css('display', 'none');
+                $( "#reset-btn" ).addClass("hidden");
             }
             
           }, 1000);
@@ -86,11 +99,10 @@ $(document).ready(function () {
         displayTime.textContent = display;
     }
    
+ });   
    
    
-   
-   
-   
+   /*
     function countDown() {
         counter++;
         //var breakTimer =;
@@ -183,8 +195,7 @@ $(document).ready(function () {
         seconds = seconds;
         */
 
-      document.getElementById("show-timer").innerHTML = (minutes + ":" + seconds)
+      //document.getElementById("show-timer").innerHTML = (minutes + ":" + seconds)
 
-    }
+//}
 
-});

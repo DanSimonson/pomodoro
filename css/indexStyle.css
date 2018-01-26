@@ -56,18 +56,6 @@ body {
       height: 96%;
       border-radius: 50%;
       background: linear-gradient(red, yellow, green);
-      /*box-shadow: 5px 10px 8px 10px red;
-      /*box-shadow: 5px 10px 20px red inset;
-      /*box-shadow: 5px 5px 8px red, 10px 10px 8px yellow, 15px 15px 8px green;
-      /*
-      background: rgba(116,207,122,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 20%, rgba(79,171,74,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(116,207,122,1)), color-stop(0%, rgba(116,207,122,1)), color-stop(20%, rgba(116,207,122,1)), color-stop(100%, rgba(79,171,74,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 20%, rgba(79,171,74,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 20%, rgba(79,171,74,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 20%, rgba(79,171,74,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 0%, rgba(116,207,122,1) 20%, rgba(79,171,74,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#74cf7a', endColorstr='#4fab4a', GradientType=1 );*/
   }
   
   .clock-time {
@@ -118,7 +106,7 @@ body {
   .start {
     margin-top: 15px;
   }
-  #start-btn {
+  .count-btn {
     color: green;
     background: linear-gradient(red, yellow, green);
     box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
@@ -129,3 +117,36 @@ body {
       box-shadow: 0px 37px 20px -20px rgba(0,0,0,0.2);
       transform: translate(0px, -10px) scale(1.2);
   }
+  .wrapper { 
+    text-align: center;
+    padding-right: 20px;
+    padding-top: 20px; 
+}
+
+.wrapper #reset-btn {
+    /*display: none;*/
+    margin: 12px 25px 50px 25px;
+}
+#reset-btn {
+  /*padding-right: 30px;
+  margin-right: 50px;
+  margin-left: 0;*/
+  border: transparent solid 5px;
+  color: green;
+  background: linear-gradient(red, yellow, green);
+  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+  
+  &:hover
+    box-shadow: 0px 37px 20px -20px rgba(0,0,0,0.2);
+    transform: translate(0px, -10px) scale(1.2);*/
+
+}
+button.hidden {
+  visibility: hidden;
+}
+.hide-awesome {
+  display: none;
+}
+
