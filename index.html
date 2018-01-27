@@ -17,6 +17,7 @@
   <body>
         <div class="container"> 
                 <p id="main-heading" class="animated rubberBand">Pomodoro Clock</p>
+                
             
               <div class="outer">
                 <div class="middle">
@@ -30,22 +31,47 @@
                   </div>
                 </div>
               </div>
-            
-              <div class="row button-container">
-                <div class="col col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                   <span class="button-heading">Break Length</span>
-                   <p><button class="break-min"><i class="fa fa-minus"></i></button><span class="time break-time" id='break-length'>5</span><button class="break-plus"><i class="fa fa-plus"></i></button></p>
+              <div class="outer-control">
+                <div class="middle-control">
+                  <div class="inner-control">
+                      <span class="button-heading">Break Length</span>
+                      <p><button class="break-min"><i class="fa fa-minus"></i></button><span class="time break-time" id='break-length'>25</span><button class="break-plus"><i class="fa fa-plus"></i></button></p>
+                      <span class="button-heading">Session Length</span>
+                      <p><button class="session-min"><i class="fa fa-minus"></i></button><span class="time session-time" id='session-length'>25</span><button class="session-plus"><i class="fa fa-plus"></i></button></p>   
+                  </div>
                 </div>
-                <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                  <button class="ctrl btn btn-lg count-btn" id='start-btn'>Start</button>
-                </div>
-                <div class="col col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                   <span class="button-heading">Session Length</span>
-                   <p><button class="session-min"><i class="fa fa-minus"></i></button><span class="time session-time" id='session-length'>25</span><button class="session-plus"><i class="fa fa-plus"></i></button></p>   
-                 </div>
               </div>
+              
+            
+                  <!--
+                  <div class='row button-container'>
+                    <div class="col-xs-12 text-center" id='break-col'>
+                        <span class="button-heading">Break Length</span>
+                        <p><button class="break-min"><i class="fa fa-minus"></i></button><span class="time break-time" id='break-length'>25</span><button class="break-plus"><i class="fa fa-plus"></i></button></p>
+                    </div>
+                    <div class="col-xs-12 text-center" id='session-col'>
+                        <span class="button-heading">Session Length</span>
+                        <p><button class="session-min"><i class="fa fa-minus"></i></button><span class="time session-time" id='session-length'>25</span><button class="session-plus"><i class="fa fa-plus"></i></button></p>   
+                   </div>
+                </div>
+                -->
+                <div class='spacer'>
+
+                </div>
+  
               <div class= 'wrapper'>
-                <button class="ctrl btn btn-lg hidden" id='reset-btn'>Reset</button>
+                <!-- <div class='col-xs-12 text-center'>
+                  <span class="button-heading">Session Length</span>
+                <p><button class="session-min"><i class="fa fa-minus"></i></button><span class="time session-time" id='session-length'>25</span><button class="session-plus"><i class="fa fa-plus"></i></button></p>   
+                 <span class="button-heading">Break Length</span>
+                  <p><button class="break-min"><i class="fa fa-minus"></i></button><span class="time break-time" id='break-length'>5</span><button class="break-plus"><i class="fa fa-plus"></i></button></p>
+                -->
+                <button class="ctrl btn btn-lg count-btn" id='start-btn'>Start</button>
+                <button class="ctrl btn btn-lg" id='reset-btn'>Reset</button>
+
+              </div>
+              <div class='footer'>
+
               </div>
 
             </div> <!--End Container-->

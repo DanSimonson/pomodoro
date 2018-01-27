@@ -32,8 +32,8 @@ body {
   
   .outer {
       display: table;
-      height: 360px;
-      width: 360px;
+      height: 340px;
+      width: 340px;
       margin: 0 auto;
       /*background: linear-gradient(red, yellow, green);*/
       border-radius: 50%;
@@ -57,19 +57,55 @@ body {
       border-radius: 50%;
       background: linear-gradient(red, yellow, green);
   }
+  .outer-control {
+    display: table;
+    height: 230px;
+    width: 230px;
+    margin: 0 auto;
+    /*background: linear-gradient(red, yellow, green);*/
+    border-radius: 50%;
+    text-align: center;
+}
+
+.middle-control {
+    display: table-cell;
+    vertical-align: middle;
+    border-radius: 50%;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f05b68', endColorstr='#e73827', GradientType=0 );
+}
+
+.inner-control {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 96%;
+    height: 96%;
+    border-radius: 50%;
+    background: linear-gradient(red, yellow, green);
+    
+}
   
   .clock-time {
-    font-size: 5em;
+    font-size: 3.5em;
     color: white;
-    
+    font-weight: 900;
+    text-shadow: 0px 3px 0px #b2a98f,
+    0px 14px 10px rgba(0,0,0,0.15),
+    0px 24px 2px rgba(0,0,0,0.1),
+    0px 34px 30px rgba(0,0,0,0.1);    
   }
   
   .clock-text {
-    font-size: 2.5em;
+    font-size: 2em;
     color: white;
-    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-    0px 8px 13px rgba(0,0,0,0.1),
-    0px 18px 23px rgba(0,0,0,0.1);
+    font-weight: 900;
+    text-shadow: 0px 3px 0px #b2a98f,
+    0px 14px 10px rgba(0,0,0,0.15),
+    0px 24px 2px rgba(0,0,0,0.1),
+    0px 34px 30px rgba(0,0,0,0.1);;
     margin-bottom:5px;
   }
   
@@ -79,17 +115,11 @@ body {
     height: 150px;
     margin: 0 auto;
   }
-  .button-container {
-    margin: 0 auto;
-    color: white;
-    text-align: center;
-    width: 60%;
-    min-width: 400px;
-    margin-top: 30px;
-  }
   
   .button-heading {
-    font-size: 18px;
+    color: white;
+    font-weight: 900;
+    font-size: 16px;
     text-shadow: 0px 3px 0px #b2a98f,
     0px 14px 10px rgba(0,0,0,0.15),
     0px 24px 2px rgba(0,0,0,0.1),
@@ -99,6 +129,7 @@ body {
     cursor: pointer;
     color: rebeccapurple ;
   }
+  
   .time {
     padding: 0 10px;
     font-size: 2.5em;
@@ -106,47 +137,106 @@ body {
   .start {
     margin-top: 15px;
   }
-  .count-btn {
-    color: green;
-    background: linear-gradient(red, yellow, green);
-    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
-    cursor: pointer;
-    transition: all ease-in-out 300ms;
-    
-    &:hover
-      box-shadow: 0px 37px 20px -20px rgba(0,0,0,0.2);
-      transform: translate(0px, -10px) scale(1.2);
-  }
+  
   .wrapper { 
     text-align: center;
-    padding-right: 20px;
+    margin: 0 auto
+    /*padding-right: 20px;
     padding-top: 20px; 
+    ;*/
+}
+.ctrl {
+  width:150px;
+  height: 50px;
+  /*display:inline-block;
+  
+  text-align: center;*/
 }
 
 .wrapper #reset-btn {
-    /*display: none;*/
-    margin: 12px 25px 50px 25px;
+    /*display: none;
+    margin: 12px 25px 50px 25px;*/
 }
-#reset-btn {
-  /*padding-right: 30px;
-  margin-right: 50px;
-  margin-left: 0;*/
-  border: transparent solid 5px;
+#start-btn {
   color: green;
   background: linear-gradient(red, yellow, green);
-  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+  /*box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);*/
   cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0px 5px 0px #00823F;
+  position: relative;
+  top: 0px;
+  transition: all ease 0.3s;
+  /*
+  padding-bottom: 20px;
   transition: all ease-in-out 300ms;
   
   &:hover
     box-shadow: 0px 37px 20px -20px rgba(0,0,0,0.2);
     transform: translate(0px, -10px) scale(1.2);*/
+}
+#start-btn:active {
+  box-shadow: 0 3px 0 #00823F;
+  top: 3px;
+}
+#reset-btn {
+  
+  color: green;
+  background: linear-gradient(red, yellow, green);
+  /*box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);*/
+  cursor: pointer;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0px 5px 0px #00823F;
+  position: relative;
+  top: 0px;
+  transition: all ease 0.3s
+  /*
+  transition: all ease-in-out 300ms;
+  
+  &:hover
+    box-shadow: 0px 37px 20px -20px rgba(0,0,0,0.2);
+    transform: translate(0px, -10px) scale(1.2);*/
+}
+#reset-btn:active {
+  box-shadow: 0 3px 0 #00823F;
+  top: 3px;
+}
+.button-container {
+  
+  margin: 0 auto;
+  color: white;
+  /*
+  text-align: center;
+  padding-left: 20%;
+  position: relative;
+  width: 60%;
+  min-width: 400px;
+  margin-top: 30px;*/
+}
+.break-time {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
 
 }
-button.hidden {
+.session-time {
+  color:white;
+  text-shadow: 2px 2px 4px #000000;
+
+}
+
+p.hidden {
   visibility: hidden;
 }
 .hide-awesome {
   display: none;
 }
+.footer {
+  height:30px;
+}
+.spacer {
+  height: 5px;
+}
+
+
 

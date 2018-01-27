@@ -3,26 +3,42 @@ $(document).ready(function () {
     var audio = new Audio('img/welldone.wav');
     
     //use event propigation to get the clicked item
-    let theParent = document.querySelector(".button-container");
+    let theParent = document.querySelector(".inner-control");
     theParent.addEventListener("click", getClick, false);
-    //get reset event
+    //let breakTime = parseInt($("#break-length").html);
+    //get reset and start events
     let reset = document.getElementById('reset-btn').addEventListener("click", resetListener, false);
-    //let reset = document.getElementById('ear');
-    //ear.addEventListener("click", listener, false)
+    let start = document.getElementById('start-btn').addEventListener("click", startListener, false);
     // display time variable
     const displayTime = document.getElementById('show-timer');
-    //global counter variable
+    //global counter variables
     let counter;
-    let stopCountDown = false;
+    let isRunning = false;
+    let loopedOnce = false;
+    let startBreak;
+    let breakTime;
+    
     
     function resetListener() {
-        console.log('reset listener');
         clearInterval(counter);
+        clearInterval(startBreak);
+        isRunning = false;
         document.getElementById("clock-header").innerHTML = "SESSION";
         document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
         $("#start-btn").text("Start");
-        $( "#reset-btn" ).addClass("hidden");
-        $('.hide-awesome').css('display', 'none');
+        //$( "#reset-btn" ).addClass("hidden");
+        $('.hide-awesome').css('display', 'none');       
+    }
+    function startListener() {
+        let sessionTimer = document.getElementById("show-timer").innerHTML;
+        let holdTime = sessionTimer.split(":");
+        let minSeconds = holdTime[0] * 60;
+        //$( "#reset-btn" ).removeClass("hidden");
+        $('.hide-awesome').css('display', 'inline-block');
+        if (isRunning === false){
+            timer(minSeconds);
+            isRunning = true;
+        }               
     }
 
     function getClick(e) {
@@ -33,32 +49,27 @@ $(document).ready(function () {
             let btnParent = e.target.parentNode;
             let btnId = e.target.id;
             let btnValue = e.target.value;
-            if(btnParent.className === 'break-min' && btnClicked.className ==='fa fa-minus') {
-                document.getElementById("break-length").innerHTML -= 1;
-            }else if (btnParent.className === 'break-plus' && btnClicked.className === 'fa fa-plus') {
-                document.getElementById("break-length").innerHTML =  parseInt(document.getElementById("break-length").innerHTML) + 1;
-
-            } else if (btnParent.className === 'session-min' && btnClicked.className === 'fa fa-minus') {
-                document.getElementById("session-length").innerHTML -= 1;
-                document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
-                
-                
-            }else if (btnParent.className = 'session-plus' && btnClicked.className === 'fa fa-plus') {
-                document.getElementById("session-length").innerHTML =  parseInt(document.getElementById("session-length").innerHTML) + 1;
-                document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
-
-            }
-
-            if(e.target.id === 'start-btn') {
-                let sessionTimer = document.getElementById("show-timer").innerHTML;
-                let holdTime = sessionTimer.split(":");
-                let minSeconds = holdTime[0] * 60;
-                $( "#reset-btn" ).removeClass("hidden");
-                $('.hide-awesome').css('display', 'inline-block');
-                timer(minSeconds);
-                
-                                
-            }
+            let tempVal;
+    
+             
+                if(btnParent.className === 'break-min' && btnClicked.className ==='fa fa-minus') {
+                    tempVal = parseInt(document.getElementById("break-length").innerHTML);
+                    if(tempVal > 1){
+                        document.getElementById("break-length").innerHTML -= 1;
+                    }                    
+                    
+                }else if (btnParent.className === 'break-plus' && btnClicked.className === 'fa fa-plus') {
+                    document.getElementById("break-length").innerHTML =  parseInt(document.getElementById("break-length").innerHTML) + 1;
+                } else if (btnParent.className === 'session-min' && btnClicked.className === 'fa fa-minus') {
+                    tempVal = parseInt(document.getElementById("session-length").innerHTML);
+                    if(tempVal > 1){
+                        document.getElementById("session-length").innerHTML -= 1;
+                        document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
+                    }                    
+                }else if (btnParent.className = 'session-plus' && btnClicked.className === 'fa fa-plus') {
+                    document.getElementById("session-length").innerHTML =  parseInt(document.getElementById("session-length").innerHTML) + 1;
+                    document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
+                }
         }
     }
 
@@ -66,37 +77,57 @@ $(document).ready(function () {
         const now = Date.now();
         const then = now + seconds * 1000;
         showCount(seconds);
-    
+
+        function breakTimer() { 
+            isRunning = true;       
+            
+            if(loopedOnce === false){
+                $('.hide-awesome').css('display', 'inline-block');                
+                document.getElementById("clock-header").innerHTML = "BREAK TIME";
+                let tempval = parseInt()
+                document.getElementById('show-timer').innerHTML = document.getElementById("break-length").innerHTML + ":00";
+                let breaking = document.getElementById("show-timer").innerHTML;
+                let breakArray = breaking.split(":");
+                let breakSeconds = (breakArray[0] * 60);
+                breakTime = parseInt(breakSeconds);
+                showCount(breakTime);         
+                breakTime -= 1;
+                loopedOnce = true;
+            }else {
+                showCount(breakTime);
+                breakTime -= 1;             
+
+            }
+            if(breakTime < 0) {
+                clearInterval(startBreak);
+                isRunning = false;
+                document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
+                document.getElementById("clock-header").innerHTML = "Session";
+                $('.hide-awesome').css('display', 'none');
+            } 
+                 
+
+        }
         counter = setInterval(() => {
             const secondsLeft = Math.round((then - Date.now()) / 1000);
-            //console.log(secondsLeft);
             // show count down
             showCount(secondsLeft);
             // check if we should stop it!
-            if(secondsLeft === 0 && stopCountDown === false) {
+            if(secondsLeft === 0) {
               clearInterval(counter);
-              document.getElementById("clock-header").innerHTML = "BREAK TIME";
-              let breakTimer = document.getElementById("break-length").innerHTML + ":00";
-              let breakTime = breakTimer.split(":");
-              let breakSeconds = breakTime[0] * 60;
-              timer(breakSeconds);
-              stopCountDown = true;
+              isRunning = false;
+              $('.hide-awesome').css('display', 'none');
+              document.getElementById('show-timer').innerHTML =  document.getElementById("session-length").innerHTML + ":00";
               audio.play();
-            }else if (secondsLeft === 0 && stopCountDown === true){
-                clearInterval(counter);
-                document.getElementById("clock-header").innerHTML = "SESSION";
-                document.getElementById('show-timer').innerHTML = document.getElementById("session-length").innerHTML + ":00";
-                $('.hide-awesome').css('display', 'none');
-                $( "#reset-btn" ).addClass("hidden");
-            }
-            
-          }, 1000);
+              startBreak = setInterval(breakTimer, 1000);
+            }            
+        }, 1000);
     } 
     
     function showCount(seconds) {
+        //calculate minutes and seconds
         const minutes = Math.floor(seconds /60);
         const secondsRemaining = seconds % 60;
-        //console.log({minutes, secondsRemaining});
         const display = `${minutes}:${secondsRemaining < 10 ? '0' : '' }${secondsRemaining}`;
         displayTime.textContent = display;
     }
@@ -104,7 +135,9 @@ $(document).ready(function () {
  });   
    
    
-   /*
+   /*----------------------------------------------------------------------------------------------------------------------------------------
+   ------------------------------------------------------------------------------------------------------------------------------------------
+   --------------------------- old code not used --------------------------------------------------------------------------------------------
     function countDown() {
         counter++;
         //var breakTimer =;
